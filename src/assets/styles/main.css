@@ -1,0 +1,218 @@
+/* ============================================================
+   巴达通官网 · 全局样式
+   品牌色：巴西绿 #00A25B / 巴西黄 #FECB00 / 深海蓝 #0B2A6B
+   ============================================================ */
+
+:root {
+  --green: #00a25b;
+  --green-dark: #00793f;
+  --green-light: #e6f7ee;
+  --yellow: #fecb00;
+  --yellow-light: #fff7d6;
+  --navy: #0b2a6b;
+  --navy-dark: #071d4d;
+  --bg: #f6f9f8;
+  --surface: #ffffff;
+  --text: #16233b;
+  --text-2: #4c5b72;
+  --text-3: #8a94a6;
+  --line: #e7edf0;
+  --shadow-sm: 0 2px 10px rgba(11, 42, 107, 0.06);
+  --shadow-md: 0 12px 32px rgba(11, 42, 107, 0.1);
+  --shadow-lg: 0 24px 60px rgba(11, 42, 107, 0.16);
+  --radius: 16px;
+  --radius-lg: 24px;
+  --container: 1200px;
+  --nav-h: 72px;
+  --font: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 12px);
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ---------- 布局工具 ---------- */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section--alt {
+  background: var(--surface);
+}
+
+.section-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--green-light);
+  color: var(--green-dark);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+.section-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--navy);
+  letter-spacing: 0.5px;
+}
+
+.section-title .accent {
+  color: var(--green);
+}
+
+.section-desc {
+  margin-top: 16px;
+  font-size: 16px;
+  color: var(--text-2);
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, #00b867, var(--green));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0, 162, 91, 0.32);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0, 162, 91, 0.42);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid rgba(11, 42, 107, 0.2);
+}
+
+.btn--ghost:hover {
+  border-color: var(--green);
+  color: var(--green-dark);
+  background: var(--green-light);
+}
+
+.btn--yellow {
+  background: linear-gradient(135deg, #ffd84d, var(--yellow));
+  color: var(--navy-dark);
+  box-shadow: 0 8px 20px rgba(254, 203, 0, 0.4);
+}
+
+.btn--yellow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(254, 203, 0, 0.5);
+}
+
+/* ---------- 卡片 ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- 滚动出现动画 ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 768px) {
+  .section {
+    padding: 64px 0;
+  }
+
+  .section-head {
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    padding: 12px 22px;
+    font-size: 14px;
+  }
+}
