@@ -19,7 +19,7 @@
         <p class="hero__desc">
           巴达通由<strong>巴西籍华人老板</strong>创办，家族深耕巴西市场 50 余年，
           提供<strong>巴西本土公司注册</strong>（简易税制 / 预估利润制 / 中国法人店）、
-          <strong>财税方案</strong>、<strong>进出口资质</strong>（无限额度 · 自行清关）与<strong>商标注册</strong>strong>提供三大认证，ANVISA,INMETRO,ANATEL</strong>全链路服务。
+          <strong>财税方案</strong>、<strong>进出口资质</strong>（无限额度 · 自行清关）与<strong>商标注册</strong>、<strong>三大认证（ANVISA、INMETRO、ANATEL）</strong>全链路服务。
           法人配合快、税务实缴合规，法人或者税务问题<strong>最高 20 万元质保赔付</strong>。
         </p>
 
