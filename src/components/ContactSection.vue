@@ -8,7 +8,7 @@
           <p class="contact__desc">
             扫码添加专属顾问，或通过以下方式联系我们。首次咨询免费，
             我们会根据你的经营体量定制最合适的巴西落地方案。
-            质保期内公司与财税问题，Pago / 公户钱包、Full 仓货物协助拿回，
+            质保期内法人或者税务问题，Pago / 公户钱包、Full 仓货物协助拿回，
             拿不回<strong class="contact__warranty">最高 20 万元赔付</strong>。
           </p>
 
