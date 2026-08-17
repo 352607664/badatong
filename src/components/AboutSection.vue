@@ -52,7 +52,7 @@
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            质保期出问题 Pago / 公户钱包、Full 仓货物拿回，最高 20 万赔付
+            质保期出问题 Pago / 公户钱包、Full 仓货物拿不回，最高 20 万赔付
           </li>
         </ul>
         <a href="#contact" class="btn btn--primary">和我们聊聊</a>
