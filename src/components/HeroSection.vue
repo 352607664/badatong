@@ -36,7 +36,7 @@
             <strong>50<em>年+</em></strong>
             <span>家族深耕巴西市场</span>
           </div>
-          <div class="hero__stat">
+          <div class="hero__stat hero__stat--highlight">
             <strong>20<em>万</em></strong>
             <span>最高质保赔付（元）</span>
           </div>
@@ -118,7 +118,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: calc(var(--nav-h) + 40px);
+  padding-top: calc(var(--nav-h) + var(--safe-top) + 40px);
   background:
     radial-gradient(900px 420px at 85% -10%, rgba(254, 203, 0, 0.16), transparent 60%),
     radial-gradient(700px 500px at 10% 10%, rgba(0, 162, 91, 0.1), transparent 60%),
@@ -206,7 +206,10 @@
 
 .hero__title-accent {
   position: relative;
-  color: var(--green);
+  background: linear-gradient(135deg, var(--green) 0%, #00c471 50%, var(--green-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   white-space: nowrap;
 }
 
@@ -217,7 +220,7 @@
   right: 0;
   bottom: 4px;
   height: 10px;
-  background: rgba(254, 203, 0, 0.45);
+  background: rgba(254, 203, 0, 0.5);
   z-index: -1;
   border-radius: 4px;
 }
@@ -243,13 +246,36 @@
 
 .hero__stats {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   margin-top: 44px;
 }
 
 .hero__stat {
   display: flex;
   flex-direction: column;
+  padding: 18px 22px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  flex: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero__stat:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.hero__stat--highlight {
+  background: linear-gradient(135deg, rgba(255, 247, 214, 0.95), rgba(255, 255, 255, 0.85));
+  border-color: rgba(254, 203, 0, 0.35);
+}
+
+.hero__stat--highlight strong {
+  color: var(--green-dark);
 }
 
 .hero__stat strong {
@@ -289,6 +315,18 @@
   border: 1px solid var(--line);
   box-shadow: var(--shadow-lg);
   transform: rotate(1.5deg);
+  animation: cardEnter 0.8s ease 0.2s both;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: rotate(1.5deg) translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(1.5deg) translateY(0);
+  }
 }
 
 .hero__card-top {
@@ -466,7 +504,8 @@
   }
 
   .hero {
-    padding-top: calc(var(--nav-h) + 24px);
+    min-height: auto;
+    padding-top: calc(var(--nav-h) + var(--safe-top) + 24px);
   }
 
   .hero__visual {
@@ -487,8 +526,50 @@
 }
 
 @media (max-width: 560px) {
+  .hero__badge {
+    font-size: 12px;
+    padding: 7px 14px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .hero__title {
+    letter-spacing: 0;
+  }
+
+  .hero__desc {
+    font-size: 15px;
+    margin-top: 18px;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .hero__stats {
-    gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .hero__stat {
+    padding: 14px 16px;
+  }
+
+  .hero__stat:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .hero__stat:hover {
+    transform: none;
   }
 
   .hero__stat strong {
@@ -496,17 +577,53 @@
   }
 
   .hero__visual {
-    min-height: 360px;
+    min-height: 340px;
+  }
+
+  .hero__card--main {
+    width: 100%;
+    max-width: 320px;
+    padding: 18px;
+  }
+
+  .hero__card-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 8px 12px;
   }
 
   .hero__chip {
-    padding: 10px 12px;
+    padding: 8px 10px;
+    max-width: 140px;
+  }
+
+  .hero__chip strong {
+    font-size: 12px;
+  }
+
+  .hero__chip small {
+    font-size: 10px;
   }
 
   .hero__chip-ic {
-    width: 32px;
-    height: 32px;
-    font-size: 15px;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .hero__chip--3 {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__chip--2 {
+    display: none;
+  }
+
+  .hero__visual {
+    min-height: 300px;
   }
 }
 </style>

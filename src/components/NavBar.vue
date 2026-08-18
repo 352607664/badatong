@@ -10,10 +10,10 @@
       </a>
 
       <nav class="navbar__menu" :class="{ 'is-open': menuOpen }">
-        <a v-for="item in menus" :key="item.href" :href="item.href" class="navbar__link" @click="menuOpen = false">
+        <a v-for="item in menus" :key="item.href" :href="item.href" class="navbar__link" @click="closeMenu">
           {{ item.label }}
         </a>
-        <a href="#contact" class="btn btn--primary navbar__cta" @click="menuOpen = false">
+        <a href="#contact" class="btn btn--primary navbar__cta" @click="closeMenu">
           立即咨询
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 
 const menus = [
   { label: '首页', href: '#home' },
@@ -45,8 +45,28 @@ const onScroll = () => {
   scrolled.value = window.scrollY > 20
 }
 
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
-onUnmounted(() => window.removeEventListener('scroll', onScroll))
+const closeMenu = () => {
+  menuOpen.value = false
+}
+
+const onResize = () => {
+  if (window.innerWidth > 900) closeMenu()
+}
+
+watch(menuOpen, (open) => {
+  document.body.classList.toggle('no-scroll', open)
+})
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('resize', onResize, { passive: true })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', onScroll)
+  window.removeEventListener('resize', onResize)
+  document.body.classList.remove('no-scroll')
+})
 </script>
 
 <style scoped>
@@ -56,7 +76,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   left: 0;
   right: 0;
   z-index: 100;
-  height: var(--nav-h);
+  height: calc(var(--nav-h) + var(--safe-top));
+  padding-top: var(--safe-top);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -137,6 +158,12 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   margin-left: 12px;
   padding: 10px 22px;
   font-size: 14px;
+  animation: ctaGlow 3s ease-in-out infinite;
+}
+
+@keyframes ctaGlow {
+  0%, 100% { box-shadow: 0 4px 16px rgba(0, 162, 91, 0.28); }
+  50% { box-shadow: 0 6px 22px rgba(0, 162, 91, 0.45); }
 }
 
 .navbar__toggle {
@@ -174,15 +201,20 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     display: flex;
   }
 
+  .navbar__brand-text small {
+    display: none;
+  }
+
   .navbar__menu {
     position: fixed;
-    top: var(--nav-h);
+    top: calc(var(--nav-h) + var(--safe-top));
     left: 0;
     right: 0;
+    bottom: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 4px;
-    padding: 16px 24px 24px;
+    padding: 16px 24px calc(24px + var(--safe-bottom));
     background: #fff;
     border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow-md);
@@ -190,6 +222,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .navbar__menu.is-open {
@@ -199,13 +233,27 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   }
 
   .navbar__link {
-    padding: 12px 14px;
+    padding: 14px 14px;
     font-size: 16px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 
   .navbar__cta {
     margin: 10px 0 0;
     justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar__brand-text strong {
+    font-size: 17px;
   }
 }
 </style>

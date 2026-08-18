@@ -238,6 +238,42 @@
     max-width: 520px;
     margin: 0 auto;
     width: 100%;
+    padding-bottom: 32px;
+  }
+}
+
+@media (max-width: 560px) {
+  .about__card-main {
+    padding: 28px 22px;
+  }
+
+  .about__quote {
+    font-size: 15px;
+    margin: 22px 0;
+  }
+
+  .about__badge {
+    right: 8px;
+    bottom: -16px;
+    padding: 12px 16px;
+  }
+
+  .about__badge strong {
+    font-size: 22px;
+  }
+
+  .about__text {
+    font-size: 14.5px;
+  }
+
+  .about__points li {
+    font-size: 14px;
+    align-items: flex-start;
+  }
+
+  .about__content .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 </style>

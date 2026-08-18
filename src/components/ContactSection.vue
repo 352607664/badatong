@@ -3,7 +3,7 @@
     <div class="container">
       <div class="contact__card" v-reveal>
         <div class="contact__info">
-          <span class="contact__tag">联系我们</span>
+          <span class="contact__tag">联系我们 · 首次咨询免费</span>
           <h2 class="contact__title">开启你的巴西生意，<br />就从<span class="accent">一次咨询</span>开始</h2>
           <p class="contact__desc">
             扫码添加专属顾问，或通过以下方式联系我们。首次咨询免费，
@@ -45,7 +45,9 @@
 
         <div class="contact__qr">
           <div class="contact__qr-box">
-            <img src="/qrcode.jpg" alt="巴达通专属顾问二维码" class="contact__qr-img" />
+            <div class="contact__qr-ring">
+              <img src="/qrcode.jpg" alt="巴达通专属顾问二维码" class="contact__qr-img" />
+            </div>
             <span class="contact__qr-tip">长按识别 / 扫码添加</span>
           </div>
           <p class="contact__qr-note">
@@ -73,8 +75,8 @@
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 48px;
-  background: #fff;
-  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #fff 0%, #f8fdf9 100%);
+  border: 1px solid rgba(0, 162, 91, 0.15);
   border-radius: var(--radius-lg);
   padding: 52px 56px;
   box-shadow: var(--shadow-md);
@@ -97,11 +99,12 @@
   display: inline-block;
   padding: 6px 16px;
   border-radius: 999px;
-  background: var(--green-light);
+  background: linear-gradient(135deg, var(--green-light), #d4f5e4);
   color: var(--green-dark);
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 18px;
+  border: 1px solid rgba(0, 162, 91, 0.15);
 }
 
 .contact__title {
@@ -161,6 +164,7 @@
   font-size: 15px;
   color: var(--navy);
   font-weight: 600;
+  word-break: break-all;
 }
 
 /* 二维码 */
@@ -179,12 +183,26 @@
 .contact__qr-box {
   background: #fff;
   border-radius: 16px;
-  padding: 16px;
+  padding: 20px;
   box-shadow: var(--shadow-md);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  border: 1px solid var(--line);
+}
+
+.contact__qr-ring {
+  position: relative;
+  padding: 4px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--green), var(--yellow));
+  animation: qrPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes qrPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 162, 91, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(0, 162, 91, 0); }
 }
 
 .contact__qr-img {
@@ -192,6 +210,8 @@
   height: 200px;
   border-radius: 8px;
   object-fit: contain;
+  display: block;
+  background: #fff;
 }
 
 .contact__qr-tip {
@@ -210,17 +230,35 @@
   .contact__card {
     grid-template-columns: 1fr;
     padding: 40px 28px;
+    gap: 36px;
+  }
+
+  .contact__qr {
+    order: -1;
   }
 }
 
 @media (max-width: 560px) {
   .contact__card {
-    padding: 32px 20px;
+    padding: 28px 18px;
+    gap: 28px;
+  }
+
+  .contact__title br {
+    display: none;
+  }
+
+  .contact__desc {
+    font-size: 14px;
+  }
+
+  .contact__list li {
+    align-items: flex-start;
   }
 
   .contact__qr-img {
-    width: 170px;
-    height: 170px;
+    width: 160px;
+    height: 160px;
   }
 }
 </style>

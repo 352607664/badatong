@@ -43,6 +43,42 @@
         </table>
       </div>
 
+      <!-- H5 卡片布局 -->
+      <div class="plans__cards" v-reveal>
+        <article v-for="p in plans" :key="'card-' + p.name" class="plans__card" :class="{ 'is-hot': p.hot }">
+          <div class="plans__card-head">
+            <div>
+              <strong>{{ p.name }}</strong>
+              <small>{{ p.type }}</small>
+            </div>
+            <span v-if="p.hot" class="plans__card-hot">推荐</span>
+          </div>
+          <div class="plans__card-price">
+            <strong>{{ p.price }}</strong>
+            <em>{{ p.old }}</em>
+          </div>
+          <dl class="plans__card-meta">
+            <div>
+              <dt>销售限额</dt>
+              <dd>{{ p.limit }}</dd>
+            </div>
+            <div>
+              <dt>质保</dt>
+              <dd><span class="plans__warranty">{{ p.warranty }}</span></dd>
+            </div>
+          </dl>
+          <a href="#contact" class="plans__card-cta">立即咨询此方案 →</a>
+        </article>
+      </div>
+
+      <div class="plans__cta" v-reveal>
+        <p>不确定选哪个方案？<strong>首次咨询免费</strong>，专属顾问为你定制最合适的落地方案</p>
+        <a href="#contact" class="btn btn--primary">
+          立即免费咨询
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
       <div class="plans__extras" v-reveal>
         <div class="plans__extra">
           <span class="plans__extra-ic">🎁</span>
@@ -245,6 +281,142 @@ const plans = [
   gap: 18px;
 }
 
+.plans__cta {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 36px;
+  background: linear-gradient(135deg, var(--navy) 0%, #123a8f 100%);
+  border-radius: 20px;
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.plans__cta p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.92;
+}
+
+.plans__cta strong {
+  color: var(--yellow);
+}
+
+.plans__cta .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* H5 卡片布局（默认隐藏，移动端显示） */
+.plans__cards {
+  display: none;
+}
+
+.plans__card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.plans__card.is-hot {
+  border-color: rgba(0, 162, 91, 0.45);
+  background: linear-gradient(180deg, #f2faf6, #fff);
+  box-shadow: 0 8px 24px rgba(0, 162, 91, 0.12);
+}
+
+.plans__card-hot {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--green), #00c471);
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 162, 91, 0.3);
+}
+
+.plans__card-price {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+}
+
+.plans__card-price strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.plans__card-price em {
+  display: block;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--text-3);
+  text-decoration: line-through;
+  margin-top: 2px;
+}
+
+.plans__card-meta {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.plans__card-meta dt {
+  font-size: 11px;
+  color: var(--text-3);
+  margin-bottom: 4px;
+}
+
+.plans__card-meta dd {
+  font-size: 13px;
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+.plans__card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.plans__card-head strong {
+  display: block;
+  font-size: 16px;
+  color: var(--navy);
+}
+
+.plans__card-head small {
+  display: block;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.plans__card-cta {
+  display: block;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green-dark);
+  transition: color 0.2s ease;
+}
+
+.plans__card-cta:hover {
+  color: var(--green);
+}
+
 .plans__extra {
   display: flex;
   align-items: flex-start;
@@ -280,9 +452,36 @@ const plans = [
   line-height: 1.6;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 768px) {
+  .plans__table-wrap {
+    display: none;
+  }
+
+  .plans__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .plans__cta {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 24px 20px;
+    gap: 16px;
+  }
+
+  .plans__cta .btn {
+    justify-content: center;
+  }
+
   .plans__extras {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .plans__extra {
+    padding: 18px;
   }
 }
 </style>

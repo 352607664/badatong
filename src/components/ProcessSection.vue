@@ -136,11 +136,18 @@ const steps = [
   .process__step {
     width: 100%;
     max-width: 520px;
+    padding: 24px 22px;
   }
 
   .process__line {
     transform: rotate(90deg);
     height: 26px;
+  }
+}
+
+@media (max-width: 560px) {
+  .process__step:hover {
+    transform: none;
   }
 }
 </style>

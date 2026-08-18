@@ -39,6 +39,12 @@ const reasons = [
   border-radius: 18px;
   position: relative;
   overflow: hidden;
+  border-top: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.why:hover {
+  border-top-color: var(--green);
 }
 
 .why::before {

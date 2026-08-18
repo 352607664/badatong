@@ -139,6 +139,22 @@ const faqs = [
 .faq-enter-to,
 .faq-leave-from {
   opacity: 1;
-  max-height: 200px;
+  max-height: 400px;
+}
+
+@media (max-width: 560px) {
+  .faq__q {
+    padding: 16px 18px;
+    font-size: 14.5px;
+    gap: 12px;
+  }
+
+  .faq__a {
+    padding: 0 18px 16px;
+  }
+
+  .faq__a p {
+    font-size: 14px;
+  }
 }
 </style>

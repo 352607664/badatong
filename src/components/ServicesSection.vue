@@ -8,7 +8,7 @@
       </div>
 
       <div class="services__grid">
-        <article v-for="(s, i) in services" :key="s.title" class="card service" v-reveal :style="{ transitionDelay: i * 0.08 + 's' }">
+        <article v-for="(s, i) in services" :key="s.title" class="card service" :class="{ 'service--featured': i === 0 }" v-reveal :style="{ transitionDelay: i * 0.08 + 's' }">
           <div class="service__icon" :style="{ background: s.bg, color: s.color }">
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path v-for="p in s.icon" :key="p" :d="p" />
@@ -85,6 +85,43 @@ const services = [
   display: flex;
   flex-direction: column;
   border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.service::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--yellow));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service:hover::before,
+.service--featured::before {
+  opacity: 1;
+}
+
+.service--featured {
+  border-color: rgba(0, 162, 91, 0.25);
+  background: linear-gradient(180deg, #f8fdf9 0%, #fff 40%);
+}
+
+.service--featured::after {
+  content: '热门';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green-dark);
+  background: var(--green-light);
+  padding: 3px 10px;
+  border-radius: 999px;
 }
 
 .service__icon {
@@ -148,9 +185,24 @@ const services = [
 
 @media (max-width: 960px) {
   .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .service {
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .services__grid {
     grid-template-columns: 1fr;
     max-width: 520px;
     margin: 0 auto;
+  }
+
+  .service__title {
+    font-size: 19px;
   }
 }
 </style>

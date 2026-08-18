@@ -135,15 +135,31 @@
 }
 
 @media (max-width: 960px) {
+  .footer {
+    padding-top: 56px;
+  }
+
   .footer__main {
     grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
 }
 
 @media (max-width: 560px) {
   .footer__main {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-bottom: calc(22px + var(--safe-bottom));
+  }
+
+  .footer__slogan {
+    font-size: 13px;
   }
 }
 </style>
